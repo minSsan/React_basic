@@ -1,13 +1,8 @@
-import LoginButton from "./Components/Button/LoginButton";
-import NaverLoginButton from "./Components/Button/NaverLoginButton";
-import Container from "./Components/Container/Vertical";
+import Login from "./pages/login/Login";
 
 function App() {
   return (
-    <Container>
-      <LoginButton />
-      <NaverLoginButton />
-    </Container>
+    <Login/>
   );
 }
 
