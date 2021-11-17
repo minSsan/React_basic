@@ -3,28 +3,34 @@
     padding: 0;
 }
 
-.radio-wrapper input[type='radio'] {
-    display: none;
+#container {
+    width: 300px;
+    margin: auto;
 }
 
-.radio-wrapper input[type='radio']:checked + label {
+/* (공통 CSS) radio button 커스터마이징 */
+.radio-wrapper input[type='radio'] {
+    display: none; /* radio button 디폴트 디자인 제거 */
+}
+
+.radio-wrapper input[type='radio']:checked + label { /* 버튼 클릭시 */
     background-color: #111E6C;
     color: #fff;
 }
 
+/* 모든 라디오 버튼 공통 CSS */
 .radio-wrapper label {
-    width: 300px;
-    height: 70px;
     border: 1px solid #000;
     border-radius: 10px;
     transition: all 0.3s;
-}
 
-label {
+    cursor: pointer;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+
+    text-align: center;
 }
 
 .title {
@@ -34,4 +40,29 @@ label {
 
 .subtitle {
     font-size: 10px;
+}
+
+/* invest-type 질문지 컨테이너 CSS */
+#investType-container {
+    width: 100%;
+    display: inline-block;
+}
+
+#investType-container label {
+    height: 70px;
+
+    margin: 10px auto;
+}
+
+/* invest-want 질문지 컨테이너 CSS */
+#investWant-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+
+    margin: 10px auto;
+}
+
+#investWant-container label {
+    padding: 10px 0;
 }
