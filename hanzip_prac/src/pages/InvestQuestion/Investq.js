@@ -1,9 +1,17 @@
 import React, {useState} from 'react';
+import Button from '../../Components/Button/Button';
 import InvestTypeButton from '../../Components/Button/InvestTypeButton';
 import InvestWantButton from '../../Components/Button/InvestWantButton';
 import './Investq.css';
 
 function InvestQ() {
+    const buttonStyle = {
+        width: '100%',
+        height: '48px',
+        fontSize: '20px',
+        lineHeight: '29px',
+    };
+
     const [selected, setSelected] = useState({
         invest_type: '',
         invest_want: '',
@@ -16,7 +24,9 @@ function InvestQ() {
             ...selected,
             [name]: value,
         });
+    }
 
+    const onClick = () => {
         console.log(selected);
     }
 
@@ -74,6 +84,7 @@ function InvestQ() {
 
     return (
         <div id="container">
+            <h2 id="header">투자자 질문지 작성</h2>
             <h4>투자자님의 유형을 알려주세요.</h4>
             <span id="investType-container">
                 {INV_TYPES.map((type) => (
@@ -102,6 +113,12 @@ function InvestQ() {
                     />
                 ))}
             </span>
+            <Button 
+                style={buttonStyle}
+                onClick={onClick}
+            >
+                나의 한집 보러가기
+            </Button>
         </div>
     );
 }

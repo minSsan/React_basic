@@ -4,8 +4,14 @@
 }
 
 #container {
-    width: 300px;
+    width: 342px;
     margin: auto;
+}
+
+#header {
+    font-size: 25px;
+    font-weight: bold;
+    color: #111E6C;
 }
 
 /* (공통 CSS) radio button 커스터마이징 */
@@ -15,13 +21,14 @@
 
 .radio-wrapper input[type='radio']:checked + label { /* 버튼 클릭시 */
     background-color: #111E6C;
+    border-color: #111E6C;
     color: #fff;
 }
 
 /* 모든 라디오 버튼 공통 CSS */
 .radio-wrapper label {
     border: 1px solid #000;
-    border-radius: 10px;
+    border-radius: 9px;
     transition: all 0.3s;
 
     cursor: pointer;
@@ -33,13 +40,19 @@
     text-align: center;
 }
 
+.radio-wrapper label:hover {
+    color: #777777;
+    border-color: #777777;
+}
+
 .title {
     font-size: 25px;
     font-weight: bold;
 }
 
 .subtitle {
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 /* invest-type 질문지 컨테이너 CSS */
@@ -49,7 +62,7 @@
 }
 
 #investType-container label {
-    height: 70px;
+    height: 75px;
 
     margin: 10px auto;
 }
@@ -64,5 +77,5 @@
 }
 
 #investWant-container label {
-    padding: 10px 0;
+    padding: 14px 0;
 }
