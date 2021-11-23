@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import Button from '../../Components/Button/Button';
-import InvestTypeButton from '../../Components/Button/InvestTypeButton';
-import InvestWantButton from '../../Components/Button/InvestWantButton';
+import InvestButton from '../../Components/Button/InvestButton';
 import './Investq.css';
 
 function InvestQ() {
@@ -15,6 +14,8 @@ function InvestQ() {
     const [selected, setSelected] = useState({
         invest_type: '',
         invest_want: '',
+        invest_location: '',
+        invest_period: '',
     });
 
     const handleChange = (e) => {
@@ -30,67 +31,82 @@ function InvestQ() {
         console.log(selected);
     }
 
+    // 투자자 유형
     const INV_TYPES = [
         {
-            id: "type1",
             value: "무주택자",
-            title:"무주택자",
             subtitle:"제 명의로 된 주택이 아직 없어요",
         },
         {
-            id: "type2",
             value: "1주택자",
-            title:"1주택자",
             subtitle:"제 명의로 된 주택이 1채 있어요",
         },
         {
-            id: "type3",
             value: "다주택자",
-            title:"다주택자",
-            subtitle:"제 명의로 된 주택이 2채 이상 있어요.",
+            subtitle:"제 명의로 된 주택이 2채 이상 있어요",
         },
     ];
 
+    // 투자 유형
     const INV_WANTS = [
         {
-            id: "want1",
             value: "투자",
             title: "투자",
-            subtitle1: "매수한 주택에",
-            subtitle2: "거주하지 않을거예요.",
+            subtitle: ["매수한 주택에", <br />, "거주하지 않을거예요"],
         },
         {
-            id: "want2",
             value: "거주",
             title: "거주",
-            subtitle1: "매수한 주택에",
-            subtitle2: "거주할 거예요.",
+            subtitle: ["매수한 주택에", <br />, "거주할 거예요"],
         },
         {
-            id: "want3",
-            value: "투자거주",
+            value: "투자거주", // "투자+거주"로 넘겨도 ok? 괜찮으면 title, value 하나로 묶을 것
             title: "투자+거주",
-            subtitle1: "매수 이후",
-            subtitle2: "거주 가능성도 있어요.",
+            subtitle: ["매수 이후", <br />, "거주 가능성도 있어요"],
         },
         {
-            id: "want4",
             value: "이사",
             title: "이사",
-            subtitle1: "기존 주택을 팔고",
-            subtitle2: "매수한 주택에 거주할 거예요.",
+            subtitle: ["기존 주택을 팔고", <br />, "매수한 주택에 거주할 거예요"],
         },
+    ];
+
+    // 투자 지역
+    const INV_LOC = [
+        "서울", "경기도", "충청도", "경상도", "전라도", "제주도", "상관없음"
+    ];
+
+    // 투자 기간
+    const INV_PERIOD = [
+        "2년이하", "4년이하", "6년이하", "8년이하", "10년이하", "상관없음"
     ];
 
     return (
         <div id="container">
             <h2 id="header">투자자 질문지 작성</h2>
+
             <h4>투자자님의 유형을 알려주세요.</h4>
             <span id="investType-container">
-                {INV_TYPES.map((type) => (
-                    <InvestTypeButton 
-                        key={type.id}
-                        id={type.id}
+                {INV_TYPES.map((type, i) => (
+                    <InvestButton 
+                        key={"type"+i}
+                        id={"type"+i}
+                        name={"invest_type"}
+                        value={type.value}
+                        onChange={handleChange}
+                        title={type.value}
+                        subtitle={[type.subtitle]}
+                    />
+                ))}
+            </span>
+
+            <h4>투자자님은 어떤 투자를 원하시나요?</h4>
+            <span className="gridButton-container">
+                {INV_WANTS.map((type, i) => (
+                    <InvestButton
+                        key={"want"+i} 
+                        id={"want"+i}
+                        name={"invest_want"}
                         value={type.value}
                         onChange={handleChange}
                         title={type.title}
@@ -99,20 +115,47 @@ function InvestQ() {
                 ))}
             </span>
 
-            <h4>투자자님은 어떤 투자를 원하시나요?</h4>
-            <span id="investWant-container">
-                {INV_WANTS.map((type) => (
-                    <InvestWantButton
-                        key={type.id} 
-                        id={type.id}
-                        value={type.value}
+            <hr />
+
+            <h4>희망 투자지역을 선택해주세요.</h4>
+            <span className="gridButton-container">
+                {INV_LOC.map((loc, i) => (
+                    <InvestButton 
+                        key={"loc"+i}
+                        id={"loc"+i}
+                        name={"invest_location"}
+                        value={loc}
                         onChange={handleChange}
-                        title={type.title}
-                        subtitle1={type.subtitle1}
-                        subtitle2={type.subtitle2}
+                        title={loc}
+                        subtitle={[]}
                     />
                 ))}
             </span>
+
+            <hr />
+
+            <h4>
+            희망 투자기간을 설정해주세요.<br/>
+            <p>Tip: 투자 기간이 길수록 성공적인 투자에 유리해요.</p>
+            </h4>
+            <span className="gridButton-container">
+                {INV_PERIOD.map((period, i) => (
+                    <InvestButton 
+                        key={"period"+i}
+                        id={"period"+i}
+                        name={"invest_period"}
+                        value={period}
+                        onChange={handleChange}
+                        title={period}
+                        subtitle={[]}
+                    />
+                ))}
+            </span>
+
+            <hr />
+
+            <h4>가용 자금을 알려주세요.</h4>
+            
             <Button 
                 style={buttonStyle}
                 onClick={onClick}

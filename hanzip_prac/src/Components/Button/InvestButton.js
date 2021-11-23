@@ -1,21 +1,21 @@
 import React from 'react';
 
-function InvestWantButton(props) {
+function InvestButton(props) {
     return (
         <div className="radio-wrapper">
             <input 
                 type="radio"
                 id={props.id}
-                name="invest_want"
+                name={props.name}
                 value={props.value}
                 onChange={props.onChange}
             />
             <label htmlFor={props.id}>
                 <p className="title">{props.title}</p>
-                <p className="subtitle">{props.subtitle1}<br/>{props.subtitle2}</p>
+                <p className="subtitle">{(props.subtitle).map((text) => text)}</p>
             </label>
         </div>
     );
 }
 
-export default InvestWantButton;
+export default InvestButton;
