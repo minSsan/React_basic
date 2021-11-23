@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Button from '../../Components/Button/Button';
 import InvestButton from '../../Components/Button/InvestButton';
+import Input from '../../Components/Input/Input';
 import './Investq.css';
 
 function InvestQ() {
@@ -16,14 +17,19 @@ function InvestQ() {
         invest_want: '',
         invest_location: '',
         invest_period: '',
+        invest_funds: 0,
+        invest_income: 0,
     });
 
     const handleChange = (e) => {
         const {name, value} = e.target;
+        if ((name === 'invest_funds' || name === 'invest_income') && isNaN(value)) {
+            e.target.value = null
+        }
 
         setSelected({
             ...selected,
-            [name]: value,
+            [name]: (name === 'invest_funds' || name === 'invest_income') ? parseInt(value.replace(/,/g, "")) : value,
         });
     }
 
@@ -35,15 +41,15 @@ function InvestQ() {
     const INV_TYPES = [
         {
             value: "무주택자",
-            subtitle:"제 명의로 된 주택이 아직 없어요",
+            subtitle:["제 명의로 된 주택이 아직 없어요"],
         },
         {
             value: "1주택자",
-            subtitle:"제 명의로 된 주택이 1채 있어요",
+            subtitle:["제 명의로 된 주택이 1채 있어요"],
         },
         {
             value: "다주택자",
-            subtitle:"제 명의로 된 주택이 2채 이상 있어요",
+            subtitle:["제 명의로 된 주택이 2채 이상 있어요"],
         },
     ];
 
@@ -91,11 +97,11 @@ function InvestQ() {
                     <InvestButton 
                         key={"type"+i}
                         id={"type"+i}
-                        name={"invest_type"}
+                        name="invest_type"
                         value={type.value}
                         onChange={handleChange}
                         title={type.value}
-                        subtitle={[type.subtitle]}
+                        subtitle={type.subtitle}
                     />
                 ))}
             </span>
@@ -106,7 +112,7 @@ function InvestQ() {
                     <InvestButton
                         key={"want"+i} 
                         id={"want"+i}
-                        name={"invest_want"}
+                        name="invest_want"
                         value={type.value}
                         onChange={handleChange}
                         title={type.title}
@@ -123,7 +129,7 @@ function InvestQ() {
                     <InvestButton 
                         key={"loc"+i}
                         id={"loc"+i}
-                        name={"invest_location"}
+                        name="invest_location"
                         value={loc}
                         onChange={handleChange}
                         title={loc}
@@ -134,16 +140,14 @@ function InvestQ() {
 
             <hr />
 
-            <h4>
-            희망 투자기간을 설정해주세요.<br/>
-            <p>Tip: 투자 기간이 길수록 성공적인 투자에 유리해요.</p>
-            </h4>
+            <h4>희망 투자기간을 설정해주세요.<br/>
+            <p>Tip: 투자 기간이 길수록 성공적인 투자에 유리해요.</p></h4>
             <span className="gridButton-container">
                 {INV_PERIOD.map((period, i) => (
                     <InvestButton 
                         key={"period"+i}
                         id={"period"+i}
-                        name={"invest_period"}
+                        name="invest_period"
                         value={period}
                         onChange={handleChange}
                         title={period}
@@ -155,6 +159,30 @@ function InvestQ() {
             <hr />
 
             <h4>가용 자금을 알려주세요.</h4>
+            <span className="costInput-container">
+                <Input 
+                    style={{width: '238px'}}
+                    name="invest_funds"
+                    type="text"
+                    placeholder="1,080,000,000"
+                    onChange={handleChange}
+                />
+                <p>원</p>
+            </span>
+            <h4>연소득을 알려주세요.<br />
+            <p>(최근 2개년, 세전기준)</p></h4>
+            <span className="costInput-container">
+                <Input 
+                    style={{width: '238px'}}
+                    name="invest_income"
+                    type="text"
+                    placeholder="570,000,000"
+                    onChange={handleChange}
+                />
+                <p>원</p>
+            </span>
+
+            <hr />
             
             <Button 
                 style={buttonStyle}

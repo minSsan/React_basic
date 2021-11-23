@@ -14,6 +14,14 @@
     color: #111E6C;
 }
 
+h4 {
+    font-size: 18px;
+}
+
+h4 > p {
+    font-size: 14px;
+}
+
 /* (공통 CSS) radio button 커스터마이징 */
 .radio-wrapper input[type='radio'] {
     display: none; /* radio button 디폴트 디자인 제거 */
@@ -29,7 +37,7 @@
 .radio-wrapper label {
     border: 1px solid #000;
     border-radius: 9px;
-    transition: all 0.3s;
+    transition: all 0.2s;
 
     cursor: pointer;
 
@@ -57,11 +65,6 @@
 }
 
 /* invest-type 질문지 컨테이너 CSS */
-#investType-container {
-    width: 100%;
-    display: inline-block;
-}
-
 #investType-container label {
     height: 75px;
 
@@ -86,4 +89,31 @@ hr {
     border-top: 1px solid #707070;
     height: 0;
     margin: 40px 0;
+}
+
+
+
+.costInput-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.costInput-container input {
+    text-align: right;
+
+    margin-right: 1px;
+    
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.costInput-container input::placeholder {
+    color: #BABABA;
+}
+
+.costInput-container p {
+    display: inline;
+    font-size: 25px;
+    font-weight: bold;
 }

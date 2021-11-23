@@ -1,6 +1,6 @@
 import InvestQ from "./pages/InvestQuestion/Investq";
 import Login from "./pages/login/Login";
-import React, {Component} from 'react';
+import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
