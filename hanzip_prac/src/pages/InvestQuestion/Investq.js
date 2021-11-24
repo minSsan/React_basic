@@ -23,14 +23,27 @@ function InvestQ() {
 
     const handleChange = (e) => {
         const {name, value} = e.target;
-        if ((name === 'invest_funds' || name === 'invest_income') && isNaN(value)) {
-            e.target.value = null
-        }
+        setSelected({
+            ...selected,
+            [name]: value,
+        });
+    }
+
+    let isValid;
+    const handleCostChange = (e) => {
+        const {name, value} = e.target;
+
+        // 가용자금, 연소득 입력값 검정(숫자가 아닌 경우, 0으로 시작하는 문자열일 경우 
+        // => 보여주는 값은 빈 문자열, 전달하는 값은 0으로 설정
+        isValid = !(/^0/.test(value) || isNaN(value.replace(/,/g, "")));
+        // 스크립트 상에서 value 값을 변경해줄 때는 handleChange가 호출되지 x
+        e.target.value = isValid ?
+            parseInt(value.replace(/,/g, "")).toLocaleString() : '';
 
         setSelected({
             ...selected,
-            [name]: (name === 'invest_funds' || name === 'invest_income') ? parseInt(value.replace(/,/g, "")) : value,
-        });
+            [name]: isValid ? parseInt(value.replace(/,/g, "")): 0,
+        }); 
     }
 
     const onClick = () => {
@@ -165,7 +178,7 @@ function InvestQ() {
                     name="invest_funds"
                     type="text"
                     placeholder="1,080,000,000"
-                    onChange={handleChange}
+                    onChange={handleCostChange}
                 />
                 <p>원</p>
             </span>
@@ -177,7 +190,7 @@ function InvestQ() {
                     name="invest_income"
                     type="text"
                     placeholder="570,000,000"
-                    onChange={handleChange}
+                    onChange={handleCostChange}
                 />
                 <p>원</p>
             </span>
