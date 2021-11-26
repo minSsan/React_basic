@@ -33,8 +33,8 @@ function InvestQ() {
     const handleCostChange = (e) => {
         const {name, value} = e.target;
 
-        // 가용자금, 연소득 입력값 검정(숫자가 아닌 경우, 0으로 시작하는 문자열일 경우 
-        // => 보여주는 값은 빈 문자열, 전달하는 값은 0으로 설정
+        // 가용자금, 연소득 잘못된 입력 (숫자가 아닌 경우, 0으로 시작) 
+        // => 보여지는 값(e.target.value)은 빈 문자열, state 값은 0으로 설정
         isValid = !(/^0/.test(value) || isNaN(value.replace(/,/g, "")));
         // 스크립트 상에서 value 값을 변경해줄 때는 handleChange가 호출되지 x
         e.target.value = isValid ?
@@ -42,8 +42,8 @@ function InvestQ() {
 
         setSelected({
             ...selected,
-            [name]: isValid ? parseInt(value.replace(/,/g, "")): 0,
-        }); 
+            [name]: isValid ? parseInt(value.replace(/,/g, "")) : 0,
+        });
     }
 
     const onClick = () => {
