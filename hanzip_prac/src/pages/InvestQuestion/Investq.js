@@ -4,14 +4,41 @@ import InvestButton from '../../Components/Button/InvestButton';
 import Input from '../../Components/Input/Input';
 import './Investq.css';
 
-function InvestQ() {
-    const buttonStyle = {
-        width: '100%',
-        height: '48px',
-        fontSize: '20px',
-        lineHeight: '29px',
-    };
+// cost: int, return: string
+function cost_to_KR(cost) {
+    let result = '';
+    cost = parseInt(cost / 10000);
+    switch (cost) {
+        case 0:
+            return '';
+        default:
+            switch (parseInt(cost / 10000)) {
+                case 0:
+                    break;
+                default:
+                    result += parseInt(cost / 10000) + "억";
+            }
+            switch(parseInt((cost % 10000) / 1000)) {
+                case 0:
+                    break;
+                default:
+                    result += parseInt((cost % 10000) / 1000);
+                    return (
+                        parseInt(((cost % 10000) % 1000) / 100) === 0 ?
+                            result + "천만원" : 
+                            result + "천" + parseInt(((cost % 10000) % 1000) / 100) + "백만원"
+                    );
+            }
+            return (
+                parseInt(((cost % 10000) % 1000) / 100) === 0 ? 
+                    (result ? result + "원" : "") : 
+                    result + parseInt(((cost % 10000) % 1000) / 100) + "백만원"
+            );
+            
+    }
+}
 
+function InvestQ() {
     const [selected, setSelected] = useState({
         invest_type: '',
         invest_want: '',
@@ -40,6 +67,7 @@ function InvestQ() {
         e.target.value = isValid ?
             parseInt(value.replace(/,/g, "")).toLocaleString() : '';
 
+        console.log(cost_to_KR(parseInt(value.replace(/,/g, ""))));
         setSelected({
             ...selected,
             [name]: isValid ? parseInt(value.replace(/,/g, "")) : 0,
@@ -198,7 +226,7 @@ function InvestQ() {
             <hr />
             
             <Button 
-                style={buttonStyle}
+                className="invest_btn"
                 onClick={onClick}
             >
                 나의 한집 보러가기

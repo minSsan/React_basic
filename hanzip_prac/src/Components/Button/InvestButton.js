@@ -1,4 +1,5 @@
 import React from 'react';
+import './InvestButton.css';
 
 function InvestButton(props) {
     return (
