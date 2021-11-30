@@ -1,12 +1,22 @@
 import React from 'react';
-import './Vertical.css'
+import styled from 'styled-components';
 
-function Container(props) {
+const StyledContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    width: ${(props) => props.width};
+`;
+
+function VerticalContainer(props) {
     return (
-        <div className='container'>
+        <StyledContainer
+            width={props.width}
+        >
             {props.children}
-        </div>
+        </StyledContainer>
     );
 }
 
-export default Container;
+export default VerticalContainer;

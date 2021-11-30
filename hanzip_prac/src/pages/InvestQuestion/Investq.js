@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import VerticalContainer from '../../Components/Container/Vertical';
+import HeaderTitle from '../../Components/Text/HeaderTitle';
 import Button from '../../Components/Button/Button';
 import InvestButton from '../../Components/Button/InvestButton';
 import Input from '../../Components/Input/Input';
@@ -129,8 +131,8 @@ function InvestQ() {
     ];
 
     return (
-        <div id="container">
-            <h2 id="header">투자자 질문지 작성</h2>
+        <VerticalContainer width="342px">
+            <HeaderTitle>투자자 질문지 작성</HeaderTitle>
 
             <h4>투자자님의 유형을 알려주세요.</h4>
             <span id="investType-container">
@@ -226,12 +228,12 @@ function InvestQ() {
             <hr />
             
             <Button 
-                className="invest_btn"
                 onClick={onClick}
+                fontSize="20px"
             >
                 나의 한집 보러가기
             </Button>
-        </div>
+        </VerticalContainer>
     );
 }
 

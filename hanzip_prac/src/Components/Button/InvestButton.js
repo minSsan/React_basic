@@ -1,11 +1,21 @@
 import React from 'react';
 import './InvestButton.css';
+import styled from 'styled-components';
+
+const RadioWrapper = styled.div`
+
+`;
+
+const RadioInput = styled.input.attrs({
+    type: "radio",
+})`
+    display: none;
+`;
 
 function InvestButton(props) {
     return (
-        <div className="radio-wrapper">
-            <input 
-                type="radio"
+        <div>
+            <RadioInput 
                 id={props.id}
                 name={props.name}
                 value={props.value}
