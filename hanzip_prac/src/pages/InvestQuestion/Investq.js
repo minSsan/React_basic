@@ -2,42 +2,37 @@ import React, {useState} from 'react';
 import VerticalContainer from '../../Components/Container/Vertical';
 import HeaderTitle from '../../Components/Text/HeaderTitle';
 import Button from '../../Components/Button/Button';
-import InvestButton from '../../Components/Button/InvestButton';
+import RadioButton from '../../Components/Button/RadioButton';
 import Input from '../../Components/Input/Input';
 import './Investq.css';
+
+const SCREEN_WIDTH = "342px";
+const TYPE_BTN_HEIGHT = "75px";
 
 // cost: int, return: string
 function cost_to_KR(cost) {
     let result = '';
     cost = parseInt(cost / 10000);
-    switch (cost) {
-        case 0:
-            return '';
-        default:
-            switch (parseInt(cost / 10000)) {
-                case 0:
-                    break;
-                default:
-                    result += parseInt(cost / 10000) + "억";
-            }
-            switch(parseInt((cost % 10000) / 1000)) {
-                case 0:
-                    break;
-                default:
-                    result += parseInt((cost % 10000) / 1000);
-                    return (
-                        parseInt(((cost % 10000) % 1000) / 100) === 0 ?
-                            result + "천만원" : 
-                            result + "천" + parseInt(((cost % 10000) % 1000) / 100) + "백만원"
-                    );
-            }
-            return (
-                parseInt(((cost % 10000) % 1000) / 100) === 0 ? 
-                    (result ? result + "원" : "") : 
-                    result + parseInt(((cost % 10000) % 1000) / 100) + "백만원"
-            );
-            
+    if(cost === 0)
+        return '';
+
+    if (parseInt(cost / 10000) !== 0) {
+        result += parseInt(cost / 10000) + "억";
     }
+
+    if(parseInt((cost % 10000) / 1000) !== 0) {
+        result += parseInt((cost % 10000) / 1000);
+        return (
+            parseInt(((cost % 10000) % 1000) / 100) === 0 ?
+                result + "천만원" : 
+                result + "천" + parseInt(((cost % 10000) % 1000) / 100) + "백만원"
+        );
+    }
+    return (
+        parseInt(((cost % 10000) % 1000) / 100) === 0 ? 
+            (result ? result + "원" : "") : 
+            result + parseInt(((cost % 10000) % 1000) / 100) + "백만원"
+    );
 }
 
 function InvestQ() {
@@ -84,15 +79,18 @@ function InvestQ() {
     const INV_TYPES = [
         {
             value: "무주택자",
-            subtitle:["제 명의로 된 주택이 아직 없어요"],
+            title: "무주택자",
+            subtitle: ["제 명의로 된 주택이 아직 없어요"],
         },
         {
             value: "1주택자",
-            subtitle:["제 명의로 된 주택이 1채 있어요"],
+            title: "1주택자",
+            subtitle: ["제 명의로 된 주택이 1채 있어요"],
         },
         {
             value: "다주택자",
-            subtitle:["제 명의로 된 주택이 2채 이상 있어요"],
+            title: "다주택자",
+            subtitle: ["제 명의로 된 주택이 2채 이상 있어요"],
         },
     ];
 
@@ -131,20 +129,21 @@ function InvestQ() {
     ];
 
     return (
-        <VerticalContainer width="342px">
+        <VerticalContainer width={SCREEN_WIDTH}>
             <HeaderTitle>투자자 질문지 작성</HeaderTitle>
 
             <h4>투자자님의 유형을 알려주세요.</h4>
             <span id="investType-container">
                 {INV_TYPES.map((type, i) => (
-                    <InvestButton 
+                    <RadioButton 
+                        {...type}
                         key={"type"+i}
                         id={"type"+i}
                         name="invest_type"
-                        value={type.value}
                         onChange={handleChange}
-                        title={type.value}
-                        subtitle={type.subtitle}
+
+                        height={TYPE_BTN_HEIGHT}
+                        margin="10px 0"
                     />
                 ))}
             </span>
@@ -152,14 +151,12 @@ function InvestQ() {
             <h4>투자자님은 어떤 투자를 원하시나요?</h4>
             <span className="gridButton-container">
                 {INV_WANTS.map((type, i) => (
-                    <InvestButton
+                    <RadioButton
+                        {...type}
                         key={"want"+i} 
                         id={"want"+i}
                         name="invest_want"
-                        value={type.value}
                         onChange={handleChange}
-                        title={type.title}
-                        subtitle={type.subtitle}
                     />
                 ))}
             </span>
@@ -169,7 +166,7 @@ function InvestQ() {
             <h4>희망 투자지역을 선택해주세요.</h4>
             <span className="gridButton-container">
                 {INV_LOC.map((loc, i) => (
-                    <InvestButton 
+                    <RadioButton 
                         key={"loc"+i}
                         id={"loc"+i}
                         name="invest_location"
@@ -187,7 +184,7 @@ function InvestQ() {
             <p>Tip: 투자 기간이 길수록 성공적인 투자에 유리해요.</p></h4>
             <span className="gridButton-container">
                 {INV_PERIOD.map((period, i) => (
-                    <InvestButton 
+                    <RadioButton
                         key={"period"+i}
                         id={"period"+i}
                         name="invest_period"

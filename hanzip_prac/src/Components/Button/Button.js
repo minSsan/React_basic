@@ -9,7 +9,7 @@ Button.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.string,
     backgroundColor: PropTypes.string,
-}
+};
 
 const StyledButton = styled.button`
     cursor: pointer;
@@ -22,21 +22,21 @@ const StyledButton = styled.button`
     color: ${(props) => props.color};
     font-size: ${(props) => props.fontSize};
     background-color: ${(props) => props.backgroundColor};
-`;
+`
 
-function Button(props) {
+function Button({children, onClick, width, height, color, fontSize, backgroundColor}) {
     return (
         <StyledButton 
-            onClick={props.onClick}
-            width={props.width || "100%"}
-            height={props.height || "48px"}
-            color={props.color || "#fff"}
-            fontSize={props.fontSize || "16px"}
-            backgroundColor={props.backgroundColor || "#111E6C"}
+            onClick={onClick}
+            width={width || "100%"}
+            height={height || "48px"}
+            color={color || "#fff"}
+            fontSize={fontSize || "16px"}
+            backgroundColor={backgroundColor || "#111E6C"}
         >
-            {props.children}
+            {children}
         </StyledButton>
-    )
+    );
 }
 
 export default Button;

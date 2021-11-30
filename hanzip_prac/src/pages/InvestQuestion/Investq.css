@@ -7,11 +7,7 @@ h4 > p {
 }
 
 /* invest-type 질문지 컨테이너 CSS */
-#investType-container label {
-    height: 75px;
 
-    margin: 10px auto;
-}
 
 /* invest-want 질문지 컨테이너 CSS */
 .gridButton-container {
