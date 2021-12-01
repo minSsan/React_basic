@@ -4,15 +4,15 @@ import styled from 'styled-components';
 const StyledH = styled.h1`
     font-size: 25px;
     font-weight: bold;
-    color: ${(props) => props.color};
+    color: ${(props) => props.color ? props.color : "#111E6C"};
 `;
 
-function HeaderTitle(props) {
+function HeaderTitle({children, color}) {
     return(
         <StyledH
-            color={props.color || "#111E6C"}
+            color={color}
         >
-            {props.children}
+            {children}
         </StyledH>
     );
 }

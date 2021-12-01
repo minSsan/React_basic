@@ -1,5 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
+Input.propTypes = {
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    onChange: PropTypes.func,
+    placeholder: PropTypes.node,
+    width: PropTypes.string,
+    height: PropTypes.string,
+};
 
 const StyledInput = styled.input.attrs(props => ({
     type: props.type || "text",

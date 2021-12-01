@@ -76,7 +76,7 @@ function RadioButton({id, name, value, onChange, disabled, title, subtitle, widt
                 name={name}
                 value={value}
                 onChange={onChange}
-                disabled={disabled || false}
+                disabled={disabled}
             />
             <StyledLabel 
                 htmlFor={id}
