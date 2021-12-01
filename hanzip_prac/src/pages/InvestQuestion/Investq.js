@@ -8,6 +8,7 @@ import './Investq.css';
 
 const SCREEN_WIDTH = "342px";
 const TYPE_BTN_HEIGHT = "75px";
+const COST_INPUT_WIDTH = "238px";
 
 // cost: int, return: string
 function cost_to_KR(cost) {
@@ -201,11 +202,11 @@ function InvestQ() {
             <h4>가용 자금을 알려주세요.</h4>
             <span className="costInput-container">
                 <Input 
-                    style={{width: '238px'}}
                     name="invest_funds"
                     type="text"
-                    placeholder="1,080,000,000"
                     onChange={handleCostChange}
+                    width={COST_INPUT_WIDTH}
+                    placeholder="1,080,000,000"
                 />
                 <p>원</p>
             </span>
@@ -213,11 +214,11 @@ function InvestQ() {
             <p>(최근 2개년, 세전기준)</p></h4>
             <span className="costInput-container">
                 <Input 
-                    style={{width: '238px'}}
                     name="invest_income"
                     type="text"
-                    placeholder="570,000,000"
                     onChange={handleCostChange}
+                    width={COST_INPUT_WIDTH}
+                    placeholder="570,000,000"
                 />
                 <p>원</p>
             </span>
