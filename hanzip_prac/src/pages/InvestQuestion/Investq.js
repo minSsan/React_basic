@@ -58,6 +58,8 @@ function InvestQ() {
     const handleCostChange = (e) => {
         const {name, value} = e.target;
 
+        e.target.value = isNaN(value) ? '' : value;
+
         // 가용자금, 연소득 잘못된 입력 (숫자가 아닌 경우, 0으로 시작) 
         // => 보여지는 값(e.target.value)은 빈 문자열, state 값은 0으로 설정
         isValid = !(/^0/.test(value) || isNaN(value.replace(/,/g, "")));
@@ -65,7 +67,7 @@ function InvestQ() {
         e.target.value = isValid ?
             parseInt(value.replace(/,/g, "")).toLocaleString() : '';
 
-        console.log(cost_to_KR(parseInt(value.replace(/,/g, ""))));
+        console.log(isValid ? cost_to_KR(parseInt(value.replace(/,/g, ""))) : 0);
         setSelected({
             ...selected,
             [name]: isValid ? parseInt(value.replace(/,/g, "")) : 0,
@@ -73,6 +75,7 @@ function InvestQ() {
     }
 
     const onClick = () => {
+        console.log(isNaN(NaN));
         console.log(selected);
     }
 
