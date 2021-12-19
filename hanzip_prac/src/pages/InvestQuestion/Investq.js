@@ -37,21 +37,32 @@ function cost_to_KR(cost) {
 }
 
 function InvestQ() {
-    const [selected, setSelected] = useState({
+    console.log("InvestQ rendered");
+    const selected = {
         invest_type: '',
         invest_want: '',
         invest_location: '',
         invest_period: '',
         invest_funds: 0,
         invest_income: 0,
-    });
+    };
+
+    // const [selected, setSelected] = useState({
+    //     invest_type: '',
+    //     invest_want: '',
+    //     invest_location: '',
+    //     invest_period: '',
+    //     invest_funds: 0,
+    //     invest_income: 0,
+    // });
 
     const handleChange = (e) => {
         const {name, value} = e.target;
-        setSelected({
-            ...selected,
-            [name]: value,
-        });
+        selected[name] = value;
+        // setSelected({
+        //     ...selected,
+        //     [name]: value,
+        // });
     }
 
     let isValid;
@@ -68,10 +79,11 @@ function InvestQ() {
             parseInt(value.replace(/,/g, "")).toLocaleString() : '';
 
         console.log(isValid ? cost_to_KR(parseInt(value.replace(/,/g, ""))) : 0);
-        setSelected({
-            ...selected,
-            [name]: isValid ? parseInt(value.replace(/,/g, "")) : 0,
-        });
+        // setSelected({
+        //     ...selected,
+        //     [name]: isValid ? parseInt(value.replace(/,/g, "")) : 0,
+        // });
+        selected[name] = isValid ? parseInt(value.replace(/,/g, "")) : 0;
     }
 
     const onClick = () => {
