@@ -6,7 +6,7 @@ function InputSample() {
         name: '',
         nickname: '',
     });
-    const nameInput = useRef();
+    const nameInput = useRef(); // nameInput 이라는 Ref 객체 생성
 
     const { name, nickname } = inputs; // 비구조화 할당을 통해 값 추출
 
@@ -24,7 +24,8 @@ function InputSample() {
             name: '',
             nickname: '',
         });
-        nameInput.current.focus();
+        nameInput.current.focus(); 
+        // nameInput.current: nameInput 이라는 Ref 객체가 가리키고 있는 DOM
     };
 
     return (
