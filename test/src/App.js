@@ -30,21 +30,24 @@ function App() {
     });
   };
 
-  const [users, setUsers] = setState([
+  const [users, setUsers] = useState([
     {
         id: 1,
         username: 'velopert',
         email: 'public.velopert@gmail.com',
+        active: true,
     },
     {
         id: 2,
         username: 'tester',
         email: 'tester@example.com',
+        active: true,
     },
     {
         id: 3,
         username: 'liz',
         email: 'liz@example.com',
+        active: false,
     },
   ]);
 
@@ -55,11 +58,32 @@ function App() {
       username,
       email,
     };
-    setUsers({
+
+    setUsers([...users, user]);
+    // setUsers(users.concat(user));
+
+    setInputs({
       username: '',
       email: '',
     });
+
     nextId.current += 1;
+
+  };
+
+  const onRemove = id => {
+    // user.id가 파라미터로 일치하지 않는 원소만 추출하여 새로운 배열 생성
+    // user.id 가 id 인 요소 제거
+    // 배열의 요소를 추가 / 제거할 경우에 불변성을 유지해야한다.
+    setUsers(users.filter(user => user.id !== id));
+  };
+
+  const onToggle = id => {
+    setUsers(
+      users.map(user =>
+        user.id === id ? {...user, active: !user.active} : user
+      )
+    );
   };
 
   return (
@@ -70,7 +94,11 @@ function App() {
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList users={users}/>
+      <UserList 
+        users={users}
+        onRemove={onRemove}
+        onToggle={onToggle}
+      />
     </>
   );
 }
