@@ -1,4 +1,4 @@
-import React, {useRef, useState, useMemo} from 'react';
+import React, {useRef, useState, useMemo, useCallback} from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 
@@ -27,13 +27,25 @@ function App() {
 
   const { username, email } = inputs;
   
-  const onChange = e => {
-    const {name, value} = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
+  // const onChange = e => {
+  //   const {name, value} = e.target;
+  //   setInputs({
+  //     ...inputs,
+  //     [name]: value,
+  //   });
+  // };
+
+  // useCallback을 사용
+  const onChange = useCallback(
+    e => {
+      const { name, value } = e.target;
+      setInputs({
+        ...inputs,
+        [name]: value,
+      });
+    },
+    [inputs]
+  );
 
   const [users, setUsers] = useState([
     {
@@ -57,7 +69,27 @@ function App() {
   ]);
 
   const nextId = useRef(4); // .current의 기본 값은 4
-  const onCreate = () => {
+
+  // const onCreate = () => {
+  //   const user = {
+  //     id: nextId.current,
+  //     username,
+  //     email,
+  //   };
+
+  //   setUsers([...users, user]);
+  //   // setUsers(users.concat(user));
+
+  //   setInputs({
+  //     username: '',
+  //     email: '',
+  //   });
+
+  //   nextId.current += 1;
+
+  // };
+
+  const onCreate = useCallback(() => {
     const user = {
       id: nextId.current,
       username,
@@ -73,23 +105,37 @@ function App() {
     });
 
     nextId.current += 1;
+  }, [users, username, email]);
 
-  };
+  // const onRemove = id => {
+  //   // user.id가 파라미터로 일치하지 않는 원소만 추출하여 새로운 배열 생성
+  //   // user.id 가 id 인 요소 제거
+  //   // 배열의 요소를 추가 / 제거할 경우에 불변성을 유지해야한다.
+  //   setUsers(users.filter(user => user.id !== id));
+  // };
 
-  const onRemove = id => {
+  const onRemove = useCallback(id => {
     // user.id가 파라미터로 일치하지 않는 원소만 추출하여 새로운 배열 생성
     // user.id 가 id 인 요소 제거
     // 배열의 요소를 추가 / 제거할 경우에 불변성을 유지해야한다.
     setUsers(users.filter(user => user.id !== id));
-  };
+  }, [users]);
 
-  const onToggle = id => {
+  // const onToggle = id => {
+  //   setUsers(
+  //     users.map(user =>
+  //       user.id === id ? {...user, active: !user.active} : user
+  //     )
+  //   );
+  // };
+
+  const onToggle = useCallback(id => {
     setUsers(
       users.map(user =>
         user.id === id ? {...user, active: !user.active} : user
       )
     );
-  };
+  }, [users]);
   
   // const count = countActiveUsers(users);
   // 이렇게 호출하게 되면, input 값이 바뀔 때마다 countActiveUsers도 다시 호출됨.
