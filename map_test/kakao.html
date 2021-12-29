@@ -10,7 +10,7 @@
 <p><em>지도를 클릭해주세요!</em></p> 
 <div id="clickLatlng"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0c9c3963cfd830d9f1cea2c9cea95dde"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키 입력"></script>
 <script>
 const context = {
     locations: new Array(),
@@ -20,7 +20,7 @@ const locations = context['locations'];
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(37.566817444183116, 126.97864660122391), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(37.566817444183116, 126.97864660122391), // 지도의 중심좌표 (서울시청)
         level: 7 // 지도의 확대 레벨
     };
 
