@@ -4,14 +4,14 @@ import CostDiv from './costDiv';
 
 const COST_INPUT_WIDTH = "238px";
 
-function IncomeInputContainer() {
+function IncomeInputContainer(props) {
     const [income, setIncome] = useState(0);
 
     const isValid = useRef();
 
     const handleCostChange = useCallback((e) => {
-        // const {name, value} = e.target;
-        const value = e.target.value;
+        const {name, value} = e.target;
+        // const value = e.target.value;
 
         isValid.current = !(/^0/.test(value) || isNaN(parseInt(value.replace(/,/g, ""))));
 
@@ -20,6 +20,7 @@ function IncomeInputContainer() {
             parseInt(value.replace(/,/g, "")).toLocaleString() : '';
 
         setIncome(v => (isValid.current ? parseInt(value.replace(/,/g, "")) : 0));
+        props.saveCostsInfo(name, isValid.current ? parseInt(value.replace(/,/g, "")) : 0);
     }, []);
 
     return (
