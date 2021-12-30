@@ -1,0 +1,54 @@
+h4 {
+    font-size: 18px;
+}
+
+h4 > p {
+    font-size: 14px;
+}
+
+/* invest-type 질문지 컨테이너 CSS */
+
+
+/* invest-want 질문지 컨테이너 CSS */
+.gridButton-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.gridButton-container label {
+    height: 101px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #707070;
+    height: 0;
+    margin: 40px 0;
+}
+
+/* 자금 입력 input 태그 CSS */
+.costInput-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.costInput-container input {
+    text-align: right;
+
+    margin-right: 1px;
+
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.costInput-container input::placeholder {
+    color: #BABABA;
+}
+
+.costInput-container p {
+    display: inline;
+    font-size: 25px;
+    font-weight: bold;
+}
