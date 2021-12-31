@@ -4,12 +4,10 @@ import HeaderTitle from '../../Components/Text/HeaderTitle';
 import Button from '../../Components/Button/Button';
 import RadioButton from '../../Components/Button/RadioButton';
 import './Investq.css';
-import FundsInputContainer from './FundsInputContainer';
-import IncomeInputContainer from './IncomeInputContainer';
+import CostsInputContainer from './CostsInputContainer';
 
 const SCREEN_WIDTH = "342px";
 const TYPE_BTN_HEIGHT = "75px";
-const COST_INPUT_WIDTH = "238px";
 
 // invest_funds, invest_income의 값이 변하면 금액을 나타내는 div 컴포넌트만 리렌더링
 
@@ -161,14 +159,18 @@ function InvestQ2() {
                 <hr />
 
                 <h4>가용 자금을 알려주세요.</h4>
-                <FundsInputContainer
+                <CostsInputContainer
+                    name={'invest_funds'}
                     saveCostsInfo={saveCostsInfo}
+                    placeholder={"1,080,000,000"}
                 />
                 
                 <h4>연소득을 알려주세요.<br />
                 <p>(최근 2개년, 세전기준)</p></h4>
-                <IncomeInputContainer
+                <CostsInputContainer
+                    name={'invest_income'}
                     saveCostsInfo={saveCostsInfo}
+                    placeholder={"570,000,000"}
                 />
 
                 <hr />

@@ -4,14 +4,12 @@ import CostDiv from './CostDiv';
 
 const COST_INPUT_WIDTH = "238px";
 
-function IncomeInputContainer(props) {
-    const [income, setIncome] = useState(0);
+function CostsInputContainer({name, saveCostsInfo, placeholder}) {
+    const [cost, setCost] = useState(0);
 
     const isValid = useRef();
-
     const handleCostChange = useCallback((e) => {
-        const {name, value} = e.target;
-        // const value = e.target.value;
+        const value = e.target.value;
 
         isValid.current = !(/^0/.test(value) || isNaN(parseInt(value.replace(/,/g, ""))));
 
@@ -19,27 +17,27 @@ function IncomeInputContainer(props) {
         e.target.value = isValid.current ?
             parseInt(value.replace(/,/g, "")).toLocaleString() : '';
 
-        setIncome(v => (isValid.current ? parseInt(value.replace(/,/g, "")) : 0));
-        props.saveCostsInfo(name, isValid.current ? parseInt(value.replace(/,/g, "")) : 0);
+        setCost(v => (isValid.current ? parseInt(value.replace(/,/g, "")) : 0));
+        saveCostsInfo(name, isValid.current ? parseInt(value.replace(/,/g, "")) : 0);
     }, []);
 
     return (
         <>
             <span className="costInput-container">
                 <Input 
-                    name="invest_income"
+                    name={name}
                     type="text"
                     onChange={handleCostChange}
                     width={COST_INPUT_WIDTH}
-                    placeholder="570,000,000"
+                    placeholder={placeholder}
                 />
                 <p>원</p>
             </span>
             <CostDiv 
-                cost={income}
+                cost={cost}
             />
         </>
     );
 }
 
-export default IncomeInputContainer;
+export default CostsInputContainer;
