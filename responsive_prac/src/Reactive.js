@@ -1,21 +1,14 @@
 import React from 'react';
-import { PC, Tablet, Mobile } from "./MediaQuery/MediaQuery";
-import PCMain from './PC/Main';
+import FirstSection from './Components/home/FirstSection';
+import SecondSection from './Components/home/SecondSection';
 
 function Reactive() {
     return (
         <>
-            <PC>
-                <PCMain />
-            </PC>
-
-            <Mobile>
-                <p>Mobile</p>
-            </Mobile>
-
-            <Tablet>
-                <p>Tablet</p>
-            </Tablet>
+            <FirstSection 
+                image={'FirstSection.png'}
+            />
+            <SecondSection />
         </>
     );
 }
