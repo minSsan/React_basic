@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MediaSize } from '../../MediaSize/MediaSize';
+import { Title } from '../text/Title';
 
 const Container = styled.div`
     height: 40vw;
@@ -36,10 +37,21 @@ const Wrapper = styled.div`
 const Left = styled.span`
 `;
 
-const Title = styled.p`
-    font-size: 3.1vw;
-    font-weight: bold;
+// const Title = styled.p`
+//     font-size: 3.1vw;
+//     font-weight: bold;
 
+//     word-break: keep-all;
+
+//     @media only screen and (max-width: ${MediaSize.Mobile_max}) {
+//         font-size: 30px;
+//         text-align: center;
+
+//         margin-bottom: 45px;
+//     }
+// `;
+
+const StyledTitle = styled(Title)`
     word-break: keep-all;
 
     @media only screen and (max-width: ${MediaSize.Mobile_max}) {
@@ -131,7 +143,7 @@ function FirstSection({image}) {
         <Container>
             <Wrapper>
                 <Left>
-                    <Title>나의 맞춤<br />부동산 받기, 한집</Title>
+                    <StyledTitle>나의 맞춤<br />부동산 받기, 한집</StyledTitle>
                     <Subtitle>부동산 고민, 한집에서 해결하세요!</Subtitle>
                     <StyledButton>5분 안에 부동산 조언 받기💰<Arrow /></StyledButton>
                 </Left>
