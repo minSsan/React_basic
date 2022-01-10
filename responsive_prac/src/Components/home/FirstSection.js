@@ -10,7 +10,7 @@ const Container = styled.div`
     color: #fff;
 
     @media only screen and (max-width: ${MediaSize.Mobile_max}) {
-        height: 761px;
+        height: initial;
 
         background-color: #fff;
         color: #306CC3;
