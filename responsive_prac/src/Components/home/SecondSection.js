@@ -33,6 +33,7 @@ const Wrapper = styled.div`
     @media only screen and (max-width: ${MediaSize.Mobile_max}) {
         position: absolute;
         top: 0;
+        
         align-items: center;
 
         width: 100%;
@@ -63,6 +64,7 @@ const StyledTitle = styled(Title)`
 
         white-space: nowrap;
         color: #306CC3;
+
 
         font-size: 25px;
     }
@@ -129,12 +131,13 @@ const ContentText = styled.p`
 
 const ImageWrapper = styled.span`
     white-space: nowrap;
+    width: 50%;
 `;
 
 const Image = styled.div`
     display: inline-block;
 
-    width: 20.8vw;
+    width: 24vw;
     height: 38vw;
 
     margin: ${(props) => props.margin};
@@ -144,8 +147,8 @@ const Image = styled.div`
     background-repeat: no-repeat;
 
     @media only screen and (max-width: ${MediaSize.Mobile_max}) {
-        width: 196px;
-        height: 350px;
+        width: 223.95px;
+        height: 360px;
         
         margin: 0;
     }
@@ -160,12 +163,12 @@ function SecondSection() {
                     이용방법
                 </StyledTitle>
                 <Content>
-                    <TextContainer>
+                    <span>
                         <ContentTitle>01</ContentTitle>
                         <ContentText>
                             5분 질문지 작성으로 <br />찾고 있는 매물을 알려주세요.
                         </ContentText>
-                    </TextContainer>
+                    </span>
                     <Image 
                         margin="-25% 0 0 0"
                         image="SecondSection1.png"
@@ -174,11 +177,11 @@ function SecondSection() {
                 <Content>
                     <ImageWrapper>
                         <Image 
-                            margin="0 0 0 -30%"
+                            margin="0 0 0 -50%"
                             image="SecondSection2-1.png"
                         />
                         <Image 
-                            margin="0 0 0 0"
+                            margin="0 0 0 -10%"
                             image="SecondSection2-2.png"
                         />
                     </ImageWrapper>
