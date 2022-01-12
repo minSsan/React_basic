@@ -7,6 +7,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
     height: 139vw;
 
     background-color: #BFD9FF;
@@ -22,7 +23,6 @@ const Wrapper = styled.div`
     flex-direction: column;
 
     width: 62.5%;
-    height: 77.5%;
 
     padding: 0 9.1% 0 10.6%;
 
@@ -129,26 +129,43 @@ const ContentText = styled.p`
     }
 `;
 
-const ImageWrapper = styled.span`
+const LargeImageWrapper = styled.span`
     white-space: nowrap;
     width: 50%;
+
+    @media only screen and (max-width: ${MediaSize.Mobile_max}) {
+        width: 366px;
+        height: 319px;
+        
+        margin: 0;
+    }
+`;
+
+const SmallImageWrapper = styled.span`
+    @media only screen and (max-width: ${MediaSize.Mobile_max}) {
+        width: 223.95px;
+        height: 360px;
+    }
 `;
 
 const Image = styled.div`
     display: inline-block;
 
-    width: 24vw;
-    height: 38vw;
+    width: ${(props) => props.width ? props.width : "24vw"};
+    height: ${(props) => props.height ? props.height : "38vw"};
 
-    margin: ${(props) => props.margin};
+    margin: ${(props) => props.margin ? props.margin : "0"};
+
+    transform: translateY(${(props) => props.y});
+    transform: translateX(${(props) => props.x});
 
     background-image: url(${(props) => 'img/'+props.image});
     background-size: cover;
     background-repeat: no-repeat;
 
     @media only screen and (max-width: ${MediaSize.Mobile_max}) {
-        width: 223.95px;
-        height: 360px;
+        width: inherit;
+        height: inherit;
         
         margin: 0;
     }
@@ -169,22 +186,25 @@ function SecondSection() {
                             5분 질문지 작성으로 <br />찾고 있는 매물을 알려주세요.
                         </ContentText>
                     </span>
-                    <Image 
-                        margin="-25% 0 0 0"
-                        image="SecondSection1.png"
-                    />
+                    <SmallImageWrapper>
+                        <Image 
+                            margin="-60% 0 0 0"
+                            image="SecondSection1.png"
+                        />
+                    </SmallImageWrapper>
                 </Content>
                 <Content>
-                    <ImageWrapper>
+                    <LargeImageWrapper>
                         <Image 
                             margin="0 0 0 -50%"
-                            image="SecondSection2-1.png"
+                            image="SecondSection2_Group.png"
+                            width="44.3vw"
                         />
-                        <Image 
+                        {/* <Image 
                             margin="0 0 0 -10%"
                             image="SecondSection2-2.png"
-                        />
-                    </ImageWrapper>
+                        /> */}
+                    </LargeImageWrapper>
                     <span>
                         <ContentTitle>02</ContentTitle>
                         <ContentText>맞춤 질문지를 토대로<br />나만의 맞춤 매물을 받아보세요.</ContentText>
@@ -195,10 +215,12 @@ function SecondSection() {
                         <ContentTitle>03</ContentTitle>
                         <ContentText>어떤 매물을 투자할지 고민 되시나요?<br/>한집 파트너스에게 조언을 구하세요.</ContentText>
                     </span>
-                    <Image 
-                        margin="0 0 -10% 0"
-                        image="SecondSection3.png"
-                    />
+                    <SmallImageWrapper>
+                        <Image 
+                            y="20%"
+                            image="SecondSection3.png"
+                        />
+                    </SmallImageWrapper>
                 </Content>
             </Wrapper>
         </Container>
