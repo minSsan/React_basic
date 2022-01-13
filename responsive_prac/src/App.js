@@ -1,9 +1,9 @@
-import Reactive from "./Reactive";
+import Description from "./pages/Description";
 
 function App() {
   return (
     <>
-      <Reactive />
+      <Description />
     </>
   );
 }

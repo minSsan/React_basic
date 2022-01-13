@@ -2,7 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { MediaSize } from '../../MediaSize/MediaSize';
 import { Title } from '../text/Title';
+import { ImageDiv, Image } from '../image/Images';
 
+/* CONSTANTS: images root directory, images' width */
+const IMG_ROOT = "description/";
+
+const SMALL_IMG_WIDTH = "223.95px";
+const SMALL_IMG_HEIGHT = "360px";
+
+const LARGE_IMG_WIDTH = "366px";
+const LARGE_IMG_HEIGHT = "319px";
+
+/* STYLED COMPONENTS */
 const Container = styled.div`
     display: flex;
     justify-content: center;
@@ -23,6 +34,7 @@ const Wrapper = styled.div`
     flex-direction: column;
 
     width: 62.5%;
+    height: 77.5%;
 
     padding: 0 9.1% 0 10.6%;
 
@@ -95,10 +107,6 @@ const Content = styled.div`
     }
 `;
 
-const TextContainer = styled.span`
-    
-`;
-
 const ContentTitle = styled.p`
     color: #0083FF;
 
@@ -129,47 +137,28 @@ const ContentText = styled.p`
     }
 `;
 
-const LargeImageWrapper = styled.span`
-    white-space: nowrap;
-    width: 50%;
+// const Image = styled.div`
+//     display: inline-block;
 
-    @media only screen and (max-width: ${MediaSize.Mobile_max}) {
-        width: 366px;
-        height: 319px;
+//     width: ${(props) => props.width ? props.width : "24vw"};
+//     height: ${(props) => props.height ? props.height : "38vw"};
+
+//     margin: ${(props) => props.margin ? props.margin : "0"};
+
+//     transform: translateY(${(props) => props.y});
+//     transform: translateX(${(props) => props.x});
+
+//     background-image: url(${(props) => 'img/'+props.image});
+//     background-size: cover;
+//     background-repeat: no-repeat;
+
+//     @media only screen and (max-width: ${MediaSize.Mobile_max}) {
+//         width: inherit;
+//         height: inherit;
         
-        margin: 0;
-    }
-`;
-
-const SmallImageWrapper = styled.span`
-    @media only screen and (max-width: ${MediaSize.Mobile_max}) {
-        width: 223.95px;
-        height: 360px;
-    }
-`;
-
-const Image = styled.div`
-    display: inline-block;
-
-    width: ${(props) => props.width ? props.width : "24vw"};
-    height: ${(props) => props.height ? props.height : "38vw"};
-
-    margin: ${(props) => props.margin ? props.margin : "0"};
-
-    transform: translateY(${(props) => props.y});
-    transform: translateX(${(props) => props.x});
-
-    background-image: url(${(props) => 'img/'+props.image});
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    @media only screen and (max-width: ${MediaSize.Mobile_max}) {
-        width: inherit;
-        height: inherit;
-        
-        margin: 0;
-    }
-`;
+//         margin: 0;
+//     }
+// `;
 
 function SecondSection() {
     return (
@@ -186,25 +175,26 @@ function SecondSection() {
                             5분 질문지 작성으로 <br />찾고 있는 매물을 알려주세요.
                         </ContentText>
                     </span>
-                    <SmallImageWrapper>
-                        <Image 
-                            margin="-60% 0 0 0"
-                            image="SecondSection1.png"
-                        />
-                    </SmallImageWrapper>
+                    <ImageDiv 
+                        width="24vw"
+                        height="38vw"
+                        margin="-25% 0 0 0"
+                        image={IMG_ROOT+"SecondSection1.png"}
+
+                        m_width={SMALL_IMG_WIDTH}
+                        m_height={SMALL_IMG_HEIGHT}
+                    />
                 </Content>
                 <Content>
-                    <LargeImageWrapper>
-                        <Image 
-                            margin="0 0 0 -50%"
-                            image="SecondSection2_Group.png"
-                            width="44.3vw"
-                        />
-                        {/* <Image 
-                            margin="0 0 0 -10%"
-                            image="SecondSection2-2.png"
-                        /> */}
-                    </LargeImageWrapper>
+                    <ImageDiv 
+                        width="44.3vw"
+                        height="38vw"
+                        margin="0 0 0 -25%"
+                        image={IMG_ROOT+"SecondSection2_Group.png"}
+
+                        m_width={LARGE_IMG_WIDTH}
+                        m_height={LARGE_IMG_HEIGHT}
+                    />
                     <span>
                         <ContentTitle>02</ContentTitle>
                         <ContentText>맞춤 질문지를 토대로<br />나만의 맞춤 매물을 받아보세요.</ContentText>
@@ -215,12 +205,15 @@ function SecondSection() {
                         <ContentTitle>03</ContentTitle>
                         <ContentText>어떤 매물을 투자할지 고민 되시나요?<br/>한집 파트너스에게 조언을 구하세요.</ContentText>
                     </span>
-                    <SmallImageWrapper>
-                        <Image 
-                            y="20%"
-                            image="SecondSection3.png"
-                        />
-                    </SmallImageWrapper>
+                    <ImageDiv 
+                        width="24vw"
+                        height="38vw"
+                        y="20%"
+                        image={IMG_ROOT+"SecondSection3.png"}
+
+                        m_width={SMALL_IMG_WIDTH}
+                        m_height={SMALL_IMG_HEIGHT}
+                    />
                 </Content>
             </Wrapper>
         </Container>

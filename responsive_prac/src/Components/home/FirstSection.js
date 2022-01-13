@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { MediaSize } from '../../MediaSize/MediaSize';
 import { Title } from '../text/Title';
 
+const IMG_ROOT = "description/";
+
 const Container = styled.div`
     height: 40vw;
 
@@ -108,14 +110,13 @@ const Arrow = styled.span`
 
     margin-left: 4px;
 
-    background-image: url('img/Arrow.png');
+    background-image: url('img/${IMG_ROOT}Arrow.png');
     background-size: cover;
     background-repeat: no-repeat;
 
     @media only screen and (max-width: ${MediaSize.Mobile_max}) {
         width: 31.5px;
         height: 14px;
-        background-img: url('img/Arrow.png');
     }
 `;
 
@@ -125,7 +126,7 @@ const Right  = styled.div`
     
     margin-bottom: -20%;
 
-    background-image: url(${(props) => 'img/'+props.image});
+    background-image: url(${(props) => 'img/'+IMG_ROOT+props.image});
     background-size: cover;
     background-repeat: no-repeat;
 
@@ -134,11 +135,11 @@ const Right  = styled.div`
         height: 524px;
         margin: 21px 0 0 0;
 
-        background-image: url('img/FirstSection_m.png');
+        background-image: url('img/${IMG_ROOT}FirstSection_m.png');
     }
 `;
 
-function FirstSection({image}) {
+function FirstSection() {
     return (
         <Container>
             <Wrapper>
@@ -148,7 +149,7 @@ function FirstSection({image}) {
                     <StyledButton>5분 안에 부동산 조언 받기💰<Arrow /></StyledButton>
                 </Left>
                 <Right 
-                    image={image}
+                    image={'FirstSection.png'}
                 />
             </Wrapper>
         </Container>  
